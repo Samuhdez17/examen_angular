@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CuboModel } from '../../models/cubo';
 import { CubosService } from '../../services/cubos.service';
 import { ActivatedRoute } from '@angular/router';
+import { from, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-marca-component',
@@ -21,11 +22,14 @@ export class MarcaComponent implements OnInit {
   ) {}
   
   async ngOnInit() {
-    this._activatedRoute.params.subscribe((parms) => {
-      this.marca = parms['marca'];
-    })
-
-    this.cubos = await this._cuboService.getCubosMarcaAsync(this.marca);
-    this._cdr.detectChanges()
+    this._activatedRoute.paramMap.pipe(
+      switchMap(params => {
+        this.marca = params.get('marca') ?? '';
+        return from(this._cuboService.getCubosMarcaAsync(this.marca));
+      }),
+    ).subscribe(cubos => {
+      this.cubos = cubos;
+      this._cdr.detectChanges();
+    });
   }
 }

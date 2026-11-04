@@ -8,31 +8,38 @@
                     class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150">
                     Home
                 </a>
-
-                <!-- Marcas como enlaces -->
-                <div class="relative group">
-                    <button type="button" aria-label="Filtrar por marca"
-                        class="bg-white border border-gray-300 rounded-md pl-3 pr-9 py-2 text-sm text-gray-700 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 flex items-center space-x-1">
-                        <span>Marcas</span>
-                        <svg class="h-4 w-4 text-gray-500" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 8l4 4 4-4" />
-                        </svg>
-                    </button>
-                    <div class="absolute right-0 mt-1 w-40 bg-white border border-gray-300 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
-                        @for (marca of marcas; track marca) {
-                            <a (click)="irAMarca(marca)"
-                                class="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer transition-colors duration-150 first:rounded-t-md last:rounded-b-md"
-                                href="javascript:void(0)">
-                                {{ marca }}
-                            </a>
-                        }
-                    </div>
-                </div>
-
+                
                 <a routerLink="/pedido" routerLinkActive="bg-gray-100 text-gray-900" [routerLinkActiveOptions]="{ exact: true }"
                     class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150">
                     Realizar pedido
                 </a>
+
+                <!-- DROPDOWN -->
+                <ul class="flex items-center gap-4">
+                    <li class="relative">
+                        <details #dropdownMarca class="group">
+                            <summary
+                                class="flex cursor-pointer list-none items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 [&::-webkit-details-marker]:hidden">
+                                <span>Marcas</span>
+                                <svg class="h-4 w-4 transition-transform group-open:rotate-180" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                                    stroke-width="1.5" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m6 8 4 4 4-4" />
+                                </svg>
+                            </summary>
+                
+                            <ul
+                                class="absolute left-0 z-50 mt-1 max-h-64 w-48 overflow-y-auto rounded-md border border-gray-200 bg-white py-1 shadow-lg">
+                                @for (marca of marcas; track marca) {
+                                <li>
+                                    <a [routerLink]="['/marca', marca]" (click)="dropdownMarca.open = false" class="block px-3 py-2 text-sm hover:bg-gray-100">
+                                        {{ marca }}
+                                    </a>
+                                </li>
+                                }
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
             </div>
 
             <!-- Lado derecho: sesión -->

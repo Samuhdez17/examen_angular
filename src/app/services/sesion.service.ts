@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { SKIP_TOKEN } from '../utils/token-context';
 import { PerfilModel } from '../models/perfil';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 
 @Injectable()
 export class SesionService {
@@ -44,5 +44,11 @@ export class SesionService {
         const url = `${this.apiSesion}api/Manage/PerfilUsuario`
 
         return firstValueFrom(this._http.get<PerfilModel>(url))
+    }
+
+    getPerfilObservable(): Observable<PerfilModel> {
+        const url = `${this.apiSesion}api/Manage/PerfilUsuario`
+
+        return this._http.get<PerfilModel>(url)
     }
 }

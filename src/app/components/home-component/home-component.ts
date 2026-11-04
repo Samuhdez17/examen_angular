@@ -11,6 +11,7 @@ import { CubosService } from '../../services/cubos.service';
 
 export class HomeComponent implements OnInit {
   cubos!: Array<CuboModel>
+  cuboSeleccionado!: CuboModel
 
   constructor(
     private _cuboService: CubosService,
@@ -20,5 +21,9 @@ export class HomeComponent implements OnInit {
   async ngOnInit() {
     this.cubos = await this._cuboService.getCubosAsync();
     this._cdr.detectChanges();
+  }
+
+  seleccionarFav(event: CuboModel) {
+    this.cuboSeleccionado = event
   }
 }

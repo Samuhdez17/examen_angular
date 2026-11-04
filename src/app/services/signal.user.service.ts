@@ -1,6 +1,5 @@
-import { Injectable, OnInit, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { PerfilModel } from '../models/perfil';
-import { SesionService } from './sesion.service';
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +12,6 @@ export class SignalUser {
 
     logIn(user: PerfilModel) {
         this.user.set(user)
-        console.log('Signal user: '+ user)
     }
 
     logOut() {
