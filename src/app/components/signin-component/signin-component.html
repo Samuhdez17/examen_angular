@@ -1,1 +1,14 @@
-<p>signin-component works!</p>
+<h1>Iniciar sesion</h1>
+
+<form #formLogin="ngForm">
+    <label>Nombre: </label>
+    <input type="text" required name="nombre" #nombre>
+
+    <label>Correo electronico: </label>
+    <input type="email" required name="correo" #correo>
+
+    <label>Contraseña </label>
+    <input type="password" required name="contrasenia" #contrasenia>
+
+    <button (click)="crearCuenta()"> Crear cuenta </button>
+</form>

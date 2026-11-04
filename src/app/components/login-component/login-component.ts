@@ -26,9 +26,6 @@ export class LoginComponent {
     let email = this.correo.nativeElement.value
     let password = this.contrasenia.nativeElement.value
 
-    console.log('correo: ' + email);
-    console.log('contra: ' + password);
-
     try {
       let token = await this._sesionService.iniciarSesionAsync(email, password)
 
@@ -41,10 +38,6 @@ export class LoginComponent {
 
       let perfil = await this._sesionService.getPerfilAsync()
       this._signalUser.logIn(perfil)
-
-      console.log('login: ')
-      console.log('token: ' + token)
-      console.log('Perfil: ' + perfil)
 
       this._toastService.success('Login exitoso');
       this._router.navigate(['/perfil']);
