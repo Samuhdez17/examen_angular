@@ -49,6 +49,6 @@ export class PerfilComponent implements OnInit {
       startY: 30,
     });
 
-    doc.save('informe.pdf')
+    doc.save('informe_pedidos.pdf')
   }
 }

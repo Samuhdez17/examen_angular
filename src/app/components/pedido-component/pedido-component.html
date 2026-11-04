@@ -39,25 +39,29 @@
 
         @if (productoSeleccionado) {
             <div class="mt-8 p-4 bg-indigo-50 rounded-lg border border-indigo-200">
-            <h3 class="text-sm font-medium text-indigo-900 mb-2">Resumen del pedido:</h3>
-            <dl class="text-sm text-gray-700 space-y-1">
-                <div class="flex justify-between">
-                <dt class="font-medium">Producto:</dt>
-                <dd>{{ productoSeleccionado.nombre }} {{ productoSeleccionado.modelo }}</dd>
-                </div>
-                <div class="flex justify-between">
-                <dt class="font-medium">Marca:</dt>
-                <dd>{{ productoSeleccionado.marca }}</dd>
-                </div>
-                <div class="flex justify-between">
-                <dt class="font-medium">Color:</dt>
-                <dd>{{ productoSeleccionado.color }}</dd>
-                </div>
-                <div class="flex justify-between">
-                <dt class="font-medium">Precio:</dt>
-                <dd class="font-semibold text-indigo-600">{{ productoSeleccionado.precio | currency:'EUR' }}</dd>
-                </div>
-            </dl>
+                <h3 class="text-sm font-medium text-indigo-900 mb-2">Resumen del pedido:</h3>
+                <dl class="text-sm text-gray-700 space-y-1">
+                    <div class="flex justify-between">
+                        <dt class="font-medium">ID Producto:</dt>
+                        <dd>{{ productoSeleccionado.idCubo }}</dd>
+                    </div>
+                    <div class="flex justify-between">
+                        <dt class="font-medium">Producto:</dt>
+                        <dd>{{ productoSeleccionado.nombre }} {{ productoSeleccionado.modelo }}</dd>
+                    </div>
+                    <div class="flex justify-between">
+                        <dt class="font-medium">Marca:</dt>
+                        <dd>{{ productoSeleccionado.marca }}</dd>
+                    </div>
+                    <div class="flex justify-between">
+                        <dt class="font-medium">Color:</dt>
+                        <dd>{{ productoSeleccionado.color }}</dd>
+                    </div>
+                    <div class="flex justify-between">
+                        <dt class="font-medium">Precio:</dt>
+                        <dd class="font-semibold text-indigo-600">{{ productoSeleccionado.precio | currency:'EUR' }}</dd>
+                    </div>
+                </dl>
             </div>
         }
         </div>
