@@ -1,0 +1,11 @@
+<h1>Iniciar sesion</h1>
+
+<form #formLogin="ngForm">
+    <label>Correo electronico: </label>
+    <input type="email" required name="correo" #correo>
+
+    <label>Contraseña </label>
+    <input type="password" required name="contrasenia" #contrasenia>
+
+    <button (click)="login()" > Iniciar sesion </button>
+</form>

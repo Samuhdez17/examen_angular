@@ -1,0 +1,59 @@
+<nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <!-- Lado izquierdo: Home y Marcas -->
+            <div class="flex items-center space-x-4">
+                <a routerLink="/" routerLinkActive="bg-gray-100 text-gray-900"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150">
+                    Home
+                </a>
+
+                <!-- Marcas como enlaces -->
+                <div class="relative group">
+                    <button type="button" aria-label="Filtrar por marca"
+                        class="bg-white border border-gray-300 rounded-md pl-3 pr-9 py-2 text-sm text-gray-700 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 flex items-center space-x-1">
+                        <span>Marcas</span>
+                        <svg class="h-4 w-4 text-gray-500" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 8l4 4 4-4" />
+                        </svg>
+                    </button>
+                    <div class="absolute right-0 mt-1 w-40 bg-white border border-gray-300 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+                        @for (marca of marcas; track marca) {
+                            <a (click)="irAMarca(marca)"
+                                class="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer transition-colors duration-150 first:rounded-t-md last:rounded-b-md"
+                                href="javascript:void(0)">
+                                {{ marca }}
+                            </a>
+                        }
+                    </div>
+                </div>
+
+                <a routerLink="/pedido" routerLinkActive="bg-gray-100 text-gray-900" [routerLinkActiveOptions]="{ exact: true }"
+                    class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150">
+                    Realizar pedido
+                </a>
+            </div>
+
+            <!-- Lado derecho: sesión -->
+            <div class="flex items-center space-x-3">
+                @if (perfil(); as usuario) {
+                    <a [routerLink]="['/perfil']" class="text-sm text-gray-700 font-medium">{{ usuario.nombre }}</a>
+                    <button type="button" (click)="logout()"
+                        class="text-gray-700 hover:text-gray-900 px-3 py-1.5 text-sm font-medium rounded-md transition-colors duration-150 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        Cerrar sesión
+                    </button>
+                } @else {
+                    <a routerLink="/login"
+                        class="text-gray-700 hover:text-gray-900 px-3 py-1.5 text-sm font-medium rounded-md transition-colors duration-150 hover:bg-gray-100">
+                        Iniciar sesión
+                    </a>
+                    <a routerLink="/signin"
+                        class="bg-blue-600 text-white px-4 py-1.5 text-sm font-medium rounded-md transition-colors duration-150 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Crear cuenta
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</nav>
