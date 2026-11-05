@@ -34,10 +34,10 @@ export class SesionService {
         const url = `${this.apiSesion}api/Manage/RegistroUsuario`
 
         let header = new HttpHeaders().set('content-type', 'application/json')
-        return this._http.post(url, perfil, {
+        return firstValueFrom(this._http.post(url, perfil, {
             headers: header,
             context: new HttpContext().set(SKIP_TOKEN, true),
-        });
+        }))
     }
 
     async getPerfilAsync(): Promise<PerfilModel> {
